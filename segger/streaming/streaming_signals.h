@@ -12,6 +12,16 @@ typedef struct {
 	uint8_t time_family_exp[];
 } time_object_t;
 
+typedef struct {
+        double low;
+        double high;
+} range_object_t;
+
+typedef struct {
+        double offset;
+        double scale;
+} postScaling_object_t;
+
 typedef enum {
 	signal_linear_rule,
 	signal_constant_rule,
@@ -49,6 +59,8 @@ typedef struct {
 	bool hidden;
 	uint64_t delta;
 	const time_object_t *time;
+        const range_object_t *range;
+        const postScaling_object_t *postScaling;
 } signal_definition_t;
 
 typedef struct signal_table_t signal_table_t;
