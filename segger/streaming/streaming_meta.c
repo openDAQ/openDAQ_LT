@@ -142,8 +142,8 @@ static void build_mpack_meta_signal_definition(mpack_writer_t *w, signal_definit
 	uint8_t definition_map_elements = 3;
 	bool is_linear_rule = def->rule == signal_linear_rule;
 	bool is_time_signal = def->time != NULL;
-        bool has_range = def->range != NULL;
-        bool has_postScaling = def->postScaling != NULL;
+	bool has_range = def->range != NULL;
+	bool has_postScaling = def->postScaling != NULL;
 	
 	if (is_time_signal) {
 		definition_map_elements += 3; // only with build_mpack_meta_signal_time_opendaq
@@ -153,13 +153,13 @@ static void build_mpack_meta_signal_definition(mpack_writer_t *w, signal_definit
 		definition_map_elements++;
 	}
 
-        if (has_range) {
-                definition_map_elements++;
-        }
+	if (has_range) {
+		definition_map_elements++;
+	}
 
-        if (has_postScaling) {
-                definition_map_elements++;
-        }
+	if (has_postScaling) {
+		definition_map_elements++;
+	}
 	
 	mpack_start_map(w, definition_map_elements);
 	mpack_write_cstr(w, "name");
@@ -180,27 +180,25 @@ static void build_mpack_meta_signal_definition(mpack_writer_t *w, signal_definit
 		// build_mpack_meta_signal_time(w, def->time);
 	}
 
-	if (has_range)
-        {
-                mpack_write_cstr(w, "range");
-                mpack_start_map(w, 2);
-                mpack_write_cstr(w, "low");
-                mpack_write_double(w, def->range->low);
-                mpack_write_cstr(w, "high");
-                mpack_write_double(w, def->range->high);
+	if (has_range) {
+		mpack_write_cstr(w, "range");
+		mpack_start_map(w, 2);
+		mpack_write_cstr(w, "low");
+		mpack_write_double(w, def->range->low);
+		mpack_write_cstr(w, "high");
+		mpack_write_double(w, def->range->high);
 		mpack_finish_map(w);
-        }
+	}
 
-        if (has_postScaling)
-        {
-                mpack_write_cstr(w, "postScaling");
-                mpack_start_map(w, 2);
-                mpack_write_cstr(w, "offset");
-                mpack_write_double(w, def->postScaling->offset);
-                mpack_write_cstr(w, "scale");
-                mpack_write_double(w, def->postScaling->scale);
+	if (has_postScaling) {
+		mpack_write_cstr(w, "postScaling");
+		mpack_start_map(w, 2);
+		mpack_write_cstr(w, "offset");
+		mpack_write_double(w, def->postScaling->offset);
+		mpack_write_cstr(w, "scale");
+		mpack_write_double(w, def->postScaling->scale);
 		mpack_finish_map(w);
-        }
+	}
 	
 	mpack_finish_map(w);
 }

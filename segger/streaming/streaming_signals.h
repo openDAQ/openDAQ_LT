@@ -13,13 +13,13 @@ typedef struct {
 } time_object_t;
 
 typedef struct {
-        double low;
-        double high;
+	double low;
+	double high;
 } range_object_t;
 
 typedef struct {
-        double offset;
-        double scale;
+	double offset;
+	double scale;
 } postScaling_object_t;
 
 typedef enum {
@@ -59,8 +59,8 @@ typedef struct {
 	bool hidden;
 	uint64_t delta;
 	const time_object_t *time;
-        const range_object_t *range;
-        const postScaling_object_t *postScaling;
+	const range_object_t *range;
+	const postScaling_object_t *postScaling;
 } signal_definition_t;
 
 typedef struct signal_table_t signal_table_t;
